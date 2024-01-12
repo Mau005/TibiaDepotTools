@@ -22,8 +22,9 @@ func Lobby(w fyne.Window) *fyne.Container {
 		w.SetContent(Test(w))
 	}))
 	for _, value := range characters {
-		container.Add(widget.NewButton(value.Name, func() {
-			w.SetContent(ItemsHanlder(w, value.ID))
+		character := value
+		container.Add(widget.NewButton(character.Name, func() {
+			w.SetContent(ItemsHanlder(w, character.ID))
 		}))
 	}
 	return container

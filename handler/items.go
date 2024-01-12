@@ -29,14 +29,15 @@ func ItemsHanlder(w fyne.Window, idCharacter uint) *fyne.Container {
 		}))
 
 	for _, values := range character.Items {
+		item := values
 		content.Add(container.NewHBox(
-			widget.NewButton(values.Name, func() {
-				w.Clipboard().SetContent(values.Name)
+			widget.NewButton(item.Name, func() {
+				w.Clipboard().SetContent(item.Name)
 			}),
-			widget.NewLabel(fmt.Sprintf("My Value: %d", values.Balance)),
-			widget.NewLabel(fmt.Sprintf("Origin Value: %d", values.CostItem)),
+			widget.NewLabel(fmt.Sprintf("My Value: %d", item.Balance)),
+			widget.NewLabel(fmt.Sprintf("Origin Value: %d", item.CostItem)),
 			widget.NewButton("Edit", func() {
-				w.SetContent(ModifyItemHandler(w, values.ID))
+				w.SetContent(ModifyItemHandler(w, item.ID))
 			})))
 	}
 	scroll := container.NewVScroll(content)

@@ -10,16 +10,14 @@ import (
 )
 
 func main() {
-	//init bd
+	//init layout
+	a := app.New()
+	w := a.NewWindow("TibiaDepotTools V1.0")
+
 	err := db.ConectionSqlite()
 	if err != nil {
 		log.Panic(err)
 	}
-	//end bd
-
-	//init layout
-	a := app.New()
-	w := a.NewWindow("TibiaDepotTools V1.0")
 
 	w.Resize(fyne.NewSize(280, 360))
 	w.SetContent(handler.Lobby(w))
