@@ -39,6 +39,11 @@ You can directly run the project and download the necessary dependencies, as lon
 
 
 ### Photos
+![image](https://github.com/Mau005/TibiaDepotTools/assets/31163804/aa4de149-1c81-4ec0-8b39-df1814bcb8cc)
+
+![image](https://github.com/Mau005/TibiaDepotTools/assets/31163804/d324c5c5-ed69-4d5f-99a4-470342b4ac49)
+
+![image](https://github.com/Mau005/TibiaDepotTools/assets/31163804/a29320d6-4f93-488a-b164-b00891393d1a)
 
 
 # Support me if you like
