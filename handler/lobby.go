@@ -5,6 +5,7 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/Mau005/TibiaDepotTools/controller"
 	"github.com/Mau005/TibiaDepotTools/model"
@@ -18,16 +19,19 @@ func Lobby(w fyne.Window) *fyne.Container {
 		log.Println(err)
 		return nil
 	}
-	container := container.NewVBox(widget.NewButton("Crear Character", func() {
-		w.SetContent(Test(w))
-	}))
+	containerCharacter := container.NewVBox(container.NewCenter(widget.NewLabel("List Character")))
 	for _, value := range characters {
 		character := value
-		container.Add(widget.NewButton(character.Name, func() {
+		containerCharacter.Add(widget.NewButton(character.Name, func() {
 			w.SetContent(ItemsHanlder(w, character.ID))
 		}))
 	}
-	return container
+
+	return container.NewBorder(widget.NewToolbar(widget.NewToolbarAction(theme.ContentAddIcon(), func() {
+		w.SetContent(Test(w))
+	})),
+		nil, nil, nil, container.NewPadded(container.NewVScroll(containerCharacter)))
+
 }
 
 func Test(w fyne.Window) *fyne.Container {
@@ -60,5 +64,7 @@ func Test(w fyne.Window) *fyne.Container {
 
 	// we can also append items
 
-	return container.NewVBox(form)
+	return container.NewVBox(container.NewCenter(widget.NewLabel("Create Character")),
+		widget.NewLabel("The names created have to be unique, as advice\n I can say that it is better to place\n the name of your character, as a detail to\n manage in the application"),
+		container.NewPadded(widget.NewCard("Create Character", "", form)))
 }

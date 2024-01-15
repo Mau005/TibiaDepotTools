@@ -9,7 +9,7 @@ import (
 var DB *gorm.DB
 
 func Migration() {
-	DB.AutoMigrate(&model.Character{}, &model.Items{})
+	DB.AutoMigrate(&model.Character{}, &model.Items{}, &model.HistoryItems{})
 }
 
 func ConectionSqlite() error {
