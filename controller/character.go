@@ -3,6 +3,7 @@ package controller
 import (
 	"github.com/Mau005/TibiaDepotTools/db"
 	"github.com/Mau005/TibiaDepotTools/model"
+	"gorm.io/gorm"
 )
 
 type CharacterController struct{}
@@ -15,7 +16,9 @@ func (cc *CharacterController) GetAllCharacter() (characters []model.Character, 
 }
 
 func (cc *CharacterController) GetCharacter(idCharacter uint) (character model.Character, err error) {
-	if err = db.DB.Preload("Items").Where("id = ?", idCharacter).First(&character).Error; err != nil {
+	if err = db.DB.Preload("Items", func(db *gorm.DB) *gorm.DB {
+		return db.Order("updated_at asc")
+	}).Where("id = ?", idCharacter).First(&character).Error; err != nil {
 		return
 	}
 	return
